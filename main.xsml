@@ -3,9 +3,15 @@
     <title>JSAR Widget</title>
     <link id="model" rel="mesh" type="octstream/glb" href="./model/pet.glb" />
     <script src="./lib/main.ts"></script>
+    <style>
+      #model {
+        rotation: 0 180 0;
+      }
+    </style>
   </head>
   <space>
     <mesh id="model" ref="model" selector="__root__" />
+    
   </space>
 </xsml>
 
