@@ -1,7 +1,9 @@
 const scene = spaceDocument.scene as BABYLON.Scene;
-const animationGroups = scene.animationGroups.filter((ag) => ag.name.endsWith('#model'));
 
-if (animationGroups.length >= 1) {
-  animationGroups[0].start(true);
-}
-
+spatialDocument.addEventListener('spaceReady', function () {
+  const animationGroups = scene.animationGroups
+    .filter((ag) => ag.name.startsWith('model.'));
+  if (animationGroups.length >= 1) {
+    animationGroups[1].start(true);
+  }
+});
