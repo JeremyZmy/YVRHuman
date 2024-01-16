@@ -18,3 +18,8 @@ https://cdn.jsdelivr.net/gh/M-CreativeLab/template-for-jsar-widget@main/main.xsm
 
 Apache 2.0
 
+<!-- 执行 -->
+
+```sh
+npm install
+```
