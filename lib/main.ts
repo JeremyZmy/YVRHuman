@@ -90,22 +90,32 @@ function connectSocket(reconnectCount) {
 const EventStatus = {
   /** 未知 */
   Unknown: 0,
-  /** JSAR端 通知已准备好可监听用户录音 */
+  /** JSAR端 Socket已连接 */
   Ready: 1,
   /**  录音中 */
   Recording: 2,
   /**  录音完毕 */
   Recorded: 3,
-  /**  识别中 */
-  Recognizing: 4,
-  /**  播放中 */
-  PlayingVoice: 5,
-  /**  结束播放 */
-  VoiceFinished: 6,
+  /** 热词监听中 */
+  HotWordListen: 4,
+  /** 热词监听结束 */
+  HotWordListenEnd: 5,
+  /**  AI回复播放中 */
+  PlayingVoice: 6,
+  /**  AI回复播放完毕 */
+  VoiceFinished: 7,
   /**  JSAR端 主动终止录音 */
-  StopRecording: 7,
+  StopRecording: 8,
   /**  JSAR端 主动终止播放 */
-  StopPlaying: 8,
+  StopPlaying: 9,
+  /** 听写无网络 */
+  VoiceInputNoNetwork: 10,
+  /** 录音失败或没有打开麦克风 */
+  RecordNotEnabled: 11,
+  /** 语音输入内容为空 */
+  VoiceInputEmpty: 12,
+  /** AI模型网络不可用 */
+  AiUnavailable: 13,
 };
 
 /**
@@ -126,7 +136,7 @@ function receivedStatus(value: any) {
     case EventStatus.Recorded:
       break;
 
-    case EventStatus.Recognizing:
+    case EventStatus.HotWordListen:
       break;
 
     case EventStatus.PlayingVoice:
