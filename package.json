@@ -1,8 +1,8 @@
 {
   "name": "YVRHuman",
-  "displayName": "Display Name",
+  "displayName": "YVR Human",
   "version": "1.0.0",
-  "description": "The template widget",
+  "description": "YVR AI assistance",
   "main": "main.xsml",
   "scripts": {},
   "files": [
