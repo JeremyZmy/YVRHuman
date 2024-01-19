@@ -1,5 +1,5 @@
 {
-  "name": "your-jsar-widget-name",
+  "name": "YVRHuman",
   "displayName": "Display Name",
   "version": "1.0.0",
   "description": "The template widget",
@@ -9,12 +9,12 @@
     "icon.png",
     "main.xsml",
     "lib/*.ts",
-    "model/welcome.glb"
+    "model/pet.glb"
   ],
   "icon3d": {
-    "base": "./model/welcome.glb"
+    "base": "./model/pet.glb"
   },
-  "author": "Yorkie Liu <yorkiefixer@gmail.com>",
+  "author": "Zhang Mingyuan <zhangmingyuan@yvr.cn>",
   "license": "Apache-2.0",
   "devDependencies": {
     "@yodaos-jsar/types": "^0.2.1-rc0"

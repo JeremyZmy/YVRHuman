@@ -1,21 +1,21 @@
-const scene = spaceDocument.scene as BABYLON.Scene;
+const scene = spatialDocument.scene as BABYLON.Scene;
 
 spatialDocument.addEventListener("spaceReady", function () {
   const animationGroups = scene.animationGroups.filter((ag) =>
     ag.name.startsWith("model.")
   );
   if (animationGroups.length >= 1) {
-    animationGroups[3].start(true);
+    animationGroups[6].start(true);
 
     setTimeout(() => {
       animationGroups[8].start(true);
-    }, 1000);
+    }, 10000);
   }
 });
 
 // 事件监听
-spaceDocument.watchInputEvent();
-spaceDocument.addEventListener("mouse", (event) => {
+spatialDocument.watchInputEvent();
+spatialDocument.addEventListener("mouse", (event) => {
   const inputData = event["inputData"];
   if (inputData.Action === "move") {
   } else if (inputData.Action === "down") {
@@ -25,7 +25,7 @@ spaceDocument.addEventListener("mouse", (event) => {
   }
 });
 
-spaceDocument.addEventListener("handtracking", (event) => {
+spatialDocument.addEventListener("handtracking", (event) => {
   const inputData = event["inputData"];
   if (inputData.Type === 1) {
     // right hand
@@ -127,28 +127,40 @@ function receivedStatus(value: any) {
       break;
 
     case EventStatus.Ready:
+      console.log("jsar_test: Ready");
       break;
 
     case EventStatus.Recording:
-      console.log("jsar_test: 已开始录音");
+      console.log("jsar_test: Recording");
       break;
 
     case EventStatus.Recorded:
+      console.log("jsar_test: Recorded");
       break;
 
     case EventStatus.HotWordListen:
+      console.log("jsar_test: HotWordListen");
+
       break;
 
     case EventStatus.PlayingVoice:
+      console.log("jsar_test: PlayingVoice");
+
       break;
 
     case EventStatus.VoiceFinished:
+      console.log("jsar_test: VoiceFinished");
+
       break;
 
     case EventStatus.StopRecording:
+      console.log("jsar_test: StopRecording");
+
       break;
 
     case EventStatus.StopPlaying:
+      console.log("jsar_test: StopPlaying");
+
       break;
 
     default:
