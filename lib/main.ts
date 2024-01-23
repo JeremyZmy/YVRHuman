@@ -121,8 +121,9 @@ const EventStatus = {
 /**
  * 监听到Android端消息通知
  */
-function receivedStatus(value: any) {
-  switch (parseInt(value)) {
+function receivedStatus(data: any) {
+  var response = JSON.parse(data);
+  switch (parseInt(response.content)) {
     case EventStatus.Unknown:
       break;
 
@@ -173,5 +174,10 @@ function receivedStatus(value: any) {
  * 向Android端发消息
  */
 function sendMessageToAndroid(status = EventStatus.Unknown) {
-  socket.send(`${status}`);
+  var data = {
+    messageId: "0",
+    type: "req",
+    content: `${status}`,
+  };
+  socket.send(JSON.stringify(data));
 }
