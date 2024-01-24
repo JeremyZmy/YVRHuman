@@ -1,17 +1,24 @@
 const scene = spatialDocument.scene as BABYLON.Scene;
 
+let animationGroups;
+
 spatialDocument.addEventListener("spaceReady", function () {
-  const animationGroups = scene.animationGroups.filter((ag) =>
+  animationGroups = scene.animationGroups.filter((ag) =>
     ag.name.startsWith("model.")
   );
   if (animationGroups.length >= 1) {
-    animationGroups[6].start(true);
 
-    setTimeout(() => {
-      animationGroups[8].start(true);
-    }, 10000);
+    // 0idle 1挠痒 6打招呼 8打哈欠 10讲话
+    animationGroups[0].start(true);
+
   }
 });
+
+function stopAllAnimation() {
+  animationGroups.forEach(element => {
+    element.stop();
+  });
+}
 
 // 事件监听
 spatialDocument.watchInputEvent();
@@ -118,6 +125,8 @@ const EventStatus = {
   AiUnavailable: 13,
 };
 
+let isRecording = 0;
+
 /**
  * 监听到Android端消息通知
  */
@@ -132,10 +141,16 @@ function receivedStatus(data: any) {
       break;
 
     case EventStatus.Recording:
+      stopAllAnimation();
+      isRecording = 1;
+      animationGroups[1].start(true);
       console.log("jsar_test: Recording");
       break;
 
     case EventStatus.Recorded:
+      isRecording = 0;
+      stopAllAnimation();
+      animationGroups[0].start(true);
       console.log("jsar_test: Recorded");
       break;
 
@@ -145,11 +160,22 @@ function receivedStatus(data: any) {
       break;
 
     case EventStatus.PlayingVoice:
+      stopAllAnimation();
+      animationGroups[10].start(true);
       console.log("jsar_test: PlayingVoice");
 
       break;
 
     case EventStatus.VoiceFinished:
+      stopAllAnimation();
+      if(isRecording) {
+        animationGroups[1].start(true);
+      }
+      else
+      {
+        animationGroups[0].start(true);
+      }
+
       console.log("jsar_test: VoiceFinished");
 
       break;
